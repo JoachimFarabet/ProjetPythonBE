@@ -38,7 +38,11 @@ class Livre(models.Model):
     nombre_de_pages = models.IntegerField()
     langue = models.CharField(max_length=50)
     image_de_couverture = models.ImageField(upload_to='livres_couvertures/', null=True, blank=True)
-    format = models.CharField(max_length=50, choices=[('Broché', 'Broché'), ('Relié', 'Relié'), ('Numérique', 'Numérique')])
+    format = models.CharField(max_length=50, choices=[
+        ('Broché', 'Broché'),
+        ('Relié', 'Relié'),
+        ('Numérique', 'Numérique')
+    ])
     categorie = models.ForeignKey(Categorie, on_delete=models.CASCADE, related_name='livres')
     auteurs = models.ManyToManyField(Auteur, related_name='livres')
     editeur = models.ForeignKey(Editeur, on_delete=models.SET_NULL, null=True, blank=True)
@@ -62,7 +66,11 @@ class Emprunt(models.Model):
     date_emprunt = models.DateTimeField(auto_now_add=True)
     date_retour_prevue = models.DateTimeField()
     date_retour_effective = models.DateTimeField(null=True, blank=True)
-    statut = models.CharField(max_length=50, choices=[('En cours', 'En cours'), ('Terminé', 'Terminé'), ('En retard', 'En retard')])
+    statut = models.CharField(max_length=50, choices=[
+        ('En cours', 'En cours'),
+        ('Terminé', 'Terminé'),
+        ('En retard', 'En retard')
+    ])
     remarques = models.TextField(null=True, blank=True)
 
     def __str__(self):

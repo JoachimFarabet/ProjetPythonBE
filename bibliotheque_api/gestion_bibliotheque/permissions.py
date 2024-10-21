@@ -21,6 +21,9 @@ class HasGroupPermission(permissions.BasePermission):
         if required_groups is None:
             return False
 
+        if "None" in required_groups:
+            return True
+
         # Vérifier si l'utilisateur essaye d'accéder à ses propres données
         if "IsSelf" in required_groups:
             if request.user.id == int(view.kwargs.get('pk')):
